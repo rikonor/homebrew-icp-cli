@@ -1,5 +1,5 @@
 class IcpCli < Formula
-  desc "ICP CLI tool"
+  desc "CLI tool for Internet Computer with WebAssembly component-based extensions"
   homepage "https://github.com/rikonor/icp-cli"
   version "0.1.5"
   license "MIT"
@@ -17,6 +17,6 @@ class IcpCli < Formula
 
   def install
     downloaded_name = File.basename(stable.url)
-    bin.install downloaded_name => "icp-cli"
+    bin.install downloaded_name => "icp"
   end
 end
