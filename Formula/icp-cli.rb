@@ -16,6 +16,7 @@ class IcpCli < Formula
   end
 
   def install
-    bin.install "icp-cli-#{Hardware::CPU.arch}-apple-darwin" => "icp-cli"
+    downloaded_name = File.basename(stable.url)
+    bin.install downloaded_name => "icp-cli"
   end
 end
