@@ -19,6 +19,22 @@ brew install icp-cli
 
 ## Development
 
+### Testing Installation
+
+To test the installation repeatedly, you can use this sequence to clean up and reinstall:
+
+```bash
+# Clean up previous installation
+brew uninstall icp-cli
+brew untap rikonor/icp-cli
+
+# Install fresh
+brew tap rikonor/icp-cli
+brew install icp-cli
+```
+
+### Updating the Formula
+
 To update the formula when a new version is released:
 
 ```bash
