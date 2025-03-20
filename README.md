@@ -5,10 +5,13 @@ Homebrew tap for [icp-cli](https://github.com/rikonor/icp-cli), a command-line u
 ## Installation
 
 ```bash
-brew install rikonor/icp-cli/icp-cli
+brew tap rikonor/icp-cli
+brew install icp-cli
 ```
 
 ## Features
+
+- Pre-installed extensions (multiply, power)
 
 - WebAssembly component-based extension system
 - Extension system with clear interfaces

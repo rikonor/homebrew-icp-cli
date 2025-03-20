@@ -19,4 +19,14 @@ class IcpCli < Formula
     downloaded_name = File.basename(stable.url)
     bin.install downloaded_name => "icp"
   end
+
+  def post_install
+    # Download and install the multiply extension
+    multiply_url = "https://github.com/rikonor/icp-cli/releases/download/v0.1.5/multiply.component.wasm"
+    system bin/"icp", "extension", "add", "--name", "multiply", multiply_url
+
+    # Download and install the power extension
+    power_url = "https://github.com/rikonor/icp-cli/releases/download/v0.1.5/power.component.wasm"
+    system bin/"icp", "extension", "add", "--name", "power", power_url
+  end
 end
