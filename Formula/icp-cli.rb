@@ -21,12 +21,9 @@ class IcpCli < Formula
   end
 
   def post_install
-    # Download and install the multiply extension
-    multiply_url = "https://github.com/rikonor/icp-cli/releases/download/v0.1.5/multiply.component.wasm"
-    system bin/"icp", "extension", "add", "--name", "multiply", multiply_url
-
-    # Download and install the power extension
-    power_url = "https://github.com/rikonor/icp-cli/releases/download/v0.1.5/power.component.wasm"
-    system bin/"icp", "extension", "add", "--name", "power", power_url
+    begin
+    rescue StandardError => e
+      puts "Other error: #{e.message}"
+    end
   end
 end
