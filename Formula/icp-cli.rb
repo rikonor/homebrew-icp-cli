@@ -6,12 +6,12 @@ class IcpCli < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.5/icp-cli-aarch64-apple-darwin"
-      sha256 "bf1a24ef33ff708a29242ff1a86899749a8fe4ca3abddc62984e041a98be223f"
+      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/icp-aarch64-apple-darwin-homebrew"
+      sha256 "cfec309c6477bc9cebb1c039eebad627d84043466119f0f67c686414c50e1b56"
     end
     on_intel do
-      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.5/icp-cli-x86_64-apple-darwin"
-      sha256 "e92f69a6ba1371865199a9441dc4b93c1a9ad0a23faa7b0223184739db33f788"
+      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/icp-x86_64-apple-darwin-homebrew"
+      sha256 "9ace358475a4a50256edd657278830dfbd380faa652ea08c89e39b5c4b2db027"
     end
   end
 
@@ -22,6 +22,8 @@ class IcpCli < Formula
 
   def post_install
     begin
+      system "#{bin}/icp", "extension", "add", "--name", "multiply", "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/multiply.component.wasm"
+      system "#{bin}/icp", "extension", "add", "--name", "power", "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/power.component.wasm"
     rescue StandardError => e
       puts "Other error: #{e.message}"
     end
