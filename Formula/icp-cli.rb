@@ -1,31 +1,37 @@
 class IcpCli < Formula
-  desc "CLI tool for Internet Computer with WebAssembly component-based extensions"
+  desc "Command-line interface for the Internet Computer platform"
   homepage "https://github.com/rikonor/icp-cli"
-  version "0.1.5"
-  license "MIT"
+  version "1.0.0"
 
-  on_macos do
-    on_arm do
-      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/icp-aarch64-apple-darwin-homebrew"
-      sha256 "cfec309c6477bc9cebb1c039eebad627d84043466119f0f67c686414c50e1b56"
-    end
-    on_intel do
-      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/icp-x86_64-apple-darwin-homebrew"
-      sha256 "9ace358475a4a50256edd657278830dfbd380faa652ea08c89e39b5c4b2db027"
-    end
+  if Hardware::CPU.intel?
+    url "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/icp-x86_64-apple-darwin-homebrew"
+    sha256 "549a72032e26b757850dc25cef5aac5898ec73c84b7e77b82b832e4575794a58"
+  else
+    url "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/icp-aarch64-apple-darwin-homebrew"
+    sha256 "225a18a266a77f3153c85b18aa3017a376ce39407370adf3928b5f2bc8aa37cf"
+  end
+
+  resource "multiply" do
+    url "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/multiply.component.wasm"
+    sha256 "d00bb255307e073fb64eeb95d14f34870c2cc8583c9f5e52ebd791b18b4001c9"
+  end
+  resource "power" do
+    url "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/power.component.wasm"
+    sha256 "812cbca369d7e5b6550bb1af15c924dc1f2e25e37c257a03b52fc040779b43ef"
   end
 
   def install
-    downloaded_name = File.basename(stable.url)
-    bin.install downloaded_name => "icp"
+    bin.install "icp"
+
+    resource("multiply").stage do
+      system bin/"icp", "extension", "add", "--name", "multiply", "multiply.component.wasm"
+    end
+    resource("power").stage do
+      system bin/"icp", "extension", "add", "--name", "power", "power.component.wasm"
+    end
   end
 
-  def post_install
-    begin
-      system "#{bin}/icp", "extension", "add", "--name", "multiply", "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/multiply.component.wasm"
-      system "#{bin}/icp", "extension", "add", "--name", "power", "https://github.com/rikonor/icp-cli/releases/download/v1.0.1/power.component.wasm"
-    rescue StandardError => e
-      puts "Other error: #{e.message}"
-    end
+  test do
+    system "#{bin}/icp", "--version"
   end
 end
