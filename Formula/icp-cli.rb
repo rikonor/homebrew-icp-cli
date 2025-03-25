@@ -24,8 +24,8 @@ class IcpCli < Formula
     begin
       # TODO(cline): pass expected checksum via `icp extension add --checksum d00bb255307e073fb64eeb95d14f34870c2cc8583c9f5e52ebd791b18b4001c9`
       system "#{bin}/icp", "extension", "add", "--name", "multiply", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/multiply.component.wasm"
-      # TODO(cline): pass expected checksum via `icp extension add --checksum 812cbca369d7e5b6550bb1af15c924dc1f2e25e37c257a03b52fc040779b43ef`
-      system "#{bin}/icp", "extension", "add", "--name", "power", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/power.component.wasm"
+      # # TODO(cline): pass expected checksum via `icp extension add --checksum 812cbca369d7e5b6550bb1af15c924dc1f2e25e37c257a03b52fc040779b43ef`
+      # system "#{bin}/icp", "extension", "add", "--name", "power", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/power.component.wasm"
     rescue StandardError => e
       puts "Other error: #{e.message}"
     end
