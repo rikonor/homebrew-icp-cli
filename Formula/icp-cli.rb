@@ -23,7 +23,7 @@ class IcpCli < Formula
   def post_install
     begin
       system "#{bin}/icp", "extension", "add", "--name", "multiply", "--force", "--checksum", "441c5cdd188105d1839b0e7e059a2d0586d9496e7943496ffc9e2eb69166bdc2", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/multiply.component.wasm"
-      system "#{bin}/icp", "extension", "add", "--name", "square", "--force", "--checksum", "43c9c6045d2eca29eb9d2d30456dc34cf8530ecc0f2eeb425c2e4e4ddab07b6b", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/square.component.wasm"
+      # system "#{bin}/icp", "extension", "add", "--name", "square", "--force", "--checksum", "43c9c6045d2eca29eb9d2d30456dc34cf8530ecc0f2eeb425c2e4e4ddab07b6b", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/square.component.wasm"
     rescue StandardError => e
       puts "Other error: #{e.message}"
     end
