@@ -1,17 +1,17 @@
 class IcpCli < Formula
   desc "CLI tool for Internet Computer with WebAssembly component-based extensions"
   homepage "https://github.com/rikonor/icp-cli"
-  version "1.0.0"
+  version "v1.0.2"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/icp-aarch64-apple-darwin-homebrew"
-      sha256 "225a18a266a77f3153c85b18aa3017a376ce39407370adf3928b5f2bc8aa37cf"
+      url "https://github.com/rikonor/icp-cli/releases/download/vv1.0.2/icp-aarch64-apple-darwin-homebrew"
+      sha256 "f669610852a2a60a7db2a2cfc9b615bd375a40715e7068c18a129fc4072af6c4"
     end
     on_intel do
-      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/icp-x86_64-apple-darwin-homebrew"
-      sha256 "549a72032e26b757850dc25cef5aac5898ec73c84b7e77b82b832e4575794a58"
+      url "https://github.com/rikonor/icp-cli/releases/download/vv1.0.2/icp-x86_64-apple-darwin-homebrew"
+      sha256 "46c0a10efd1cc3294f33b32fdc1df43eb9aca31a68ea650dd488fea37b6a9b89"
     end
   end
 
@@ -22,10 +22,8 @@ class IcpCli < Formula
 
   def post_install
     begin
-      # TODO(cline): pass expected checksum via `icp extension add --checksum d00bb255307e073fb64eeb95d14f34870c2cc8583c9f5e52ebd791b18b4001c9`
-      system "#{bin}/icp", "extension", "add", "--name", "multiply", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/multiply.component.wasm"
-      # # TODO(cline): pass expected checksum via `icp extension add --checksum 812cbca369d7e5b6550bb1af15c924dc1f2e25e37c257a03b52fc040779b43ef`
-      # system "#{bin}/icp", "extension", "add", "--name", "power", "https://github.com/rikonor/icp-cli/releases/download/v1.0.0/power.component.wasm"
+      system "#{bin}/icp", "extension", "add", "--name", "multiply", "--force", "--checksum", "441c5cdd188105d1839b0e7e059a2d0586d9496e7943496ffc9e2eb69166bdc2", "https://github.com/rikonor/icp-cli/releases/download/vv1.0.2/multiply.component.wasm"
+      system "#{bin}/icp", "extension", "add", "--name", "square", "--force", "--checksum", "43c9c6045d2eca29eb9d2d30456dc34cf8530ecc0f2eeb425c2e4e4ddab07b6b", "https://github.com/rikonor/icp-cli/releases/download/vv1.0.2/square.component.wasm"
     rescue StandardError => e
       puts "Other error: #{e.message}"
     end
