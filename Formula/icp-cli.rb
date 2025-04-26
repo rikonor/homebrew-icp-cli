@@ -1,17 +1,17 @@
 class IcpCli < Formula
   desc "CLI tool for Internet Computer with WebAssembly component-based extensions"
   homepage "https://github.com/rikonor/icp-cli"
-  version "1.0.4"
+  version "v0.1.10"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.4/icp-aarch64-apple-darwin-homebrew"
-      sha256 "897f4284a2c1d9c957e4c860e40eae6f78b942b9daf5502700eca6e14d25a0a8"
+      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.10/icp-aarch64-apple-darwin-homebrew"
+      sha256 "7c746d947ed75543c5b326daf866f27d78f105ca1a5e9fbe22e6113dcadbecef"
     end
     on_intel do
-      url "https://github.com/rikonor/icp-cli/releases/download/v1.0.4/icp-x86_64-apple-darwin-homebrew"
-      sha256 "9bacee193e72a329995c3a6ba17eab386efcabb0ddd7fbd38a7ab6b2b5cd88b3"
+      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.10/icp-x86_64-apple-darwin-homebrew"
+      sha256 "160cc7b465d6dde3c2d889f039f5896c3b1895ca91199c0d230a8cfdddfb7d09"
     end
   end
 
@@ -22,9 +22,6 @@ class IcpCli < Formula
 
   def post_install
     begin
-      system "#{bin}/icp", "extension", "add", "--name", "build", "--force", "--checksum", "9af6d6a71590119ac9152fca8e169bddfc91ffed40c1cae61551e70602708b12", "https://github.com/rikonor/icp-cli/releases/download/v1.0.4/build.component.wasm"
-      system "#{bin}/icp", "extension", "add", "--name", "identity", "--force", "--checksum", "8d71aa207e3fa5727f0f84af19e4bd34d345f21f853bcc3f89dbaef9ce6784be", "https://github.com/rikonor/icp-cli/releases/download/v1.0.4/identity.component.wasm"
-      system "#{bin}/icp", "extension", "add", "--name", "project", "--force", "--checksum", "4b9fb9ad59b129fafe877b8043753dae643bf3205d59b7ae852db63b987b0d77", "https://github.com/rikonor/icp-cli/releases/download/v1.0.4/project.component.wasm"
     rescue StandardError => e
       puts "Other error: #{e.message}"
     end
