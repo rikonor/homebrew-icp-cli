@@ -1,17 +1,17 @@
 class IcpCli < Formula
   desc "CLI tool for Internet Computer with WebAssembly component-based extensions"
   homepage "https://github.com/rikonor/icp-cli"
-  version "v0.1.17"
+  version "v0.1.18"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.17/icp-aarch64-apple-darwin-homebrew"
-      sha256 "ee51599748562aade098046262c108fb2161d7960d03babe1a1dcd19b24f1b43"
+      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.18/icp-aarch64-apple-darwin-homebrew"
+      sha256 "cb884fa2be81461697a63eda20af232a6a911a18966fd14414bc726dd9390f97"
     end
     on_intel do
-      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.17/icp-x86_64-apple-darwin-homebrew"
-      sha256 "b668f74c5efe697b93d80ca68d7a5eb551ce5e25ecf54d76270386bc167ec196"
+      url "https://github.com/rikonor/icp-cli/releases/download/v0.1.18/icp-x86_64-apple-darwin-homebrew"
+      sha256 "54ea1a811f877fcde09d33097da30f33cd272cc23879a889506a6e7a2c7a30f7"
     end
   end
 
